@@ -1,0 +1,6 @@
+flask==2.2.2
+tabula-py==2.5.1
+asgiref==3.5.2
+PyPDF2==2.11.1
+SQLAlchemy==1.4.42 
+PyMySQL==1.0.2
