@@ -11,10 +11,10 @@ import re
 
 app = Flask(__name__)
 archivos = {}
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:Passw0rd@100.67.105.49:33306/egresados'
+SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root@localhost:3306/egresados'
 engine = create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
 
-PATH = '/home/user/Projects/Egresados'
+PATH = '%USERPROFILE%\Desktop\EgresadosCRUV'
 
 def to_sql(df, create=False):
    if create:
