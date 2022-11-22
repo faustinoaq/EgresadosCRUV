@@ -1,1 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Sistema de Minería de Datos para Egresados</title>
+   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+   <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+   <style>
+      div.dataTables_wrapper {
+         width: 100%;
+         margin: 0 auto;
+      }
+   </style>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+   <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+</head>
+
+<body>
+   <div class="container">
+      <div class="row">
+         <div class="col">
+            <h1>Sistema para Minería de Datos de Egresados</h1>
+         </div>
+      </div>
+      <div class="row mb-4">
+         <div class="col">
+            <form action="/" method="POST" enctype="multipart/form-data">
+               <input type="file" name="file" required />
+               <input type="submit" />
+            </form>
+         </div>
+      </div>
+      <div class="row mb-4">
+         <div class="col">
+            <h3>Archivos:</h3>
+            <ul>
+               {% if archivos %}
+               {% for archivo in archivos %}
+               <li>Se esta procesando el archivo {{ archivo }}...</li>
+               {% endfor %}
+               {% else %}
+               <li>No se están procesado archivos</li>
+               {% endif %}
+            </ul>
+            <h3>Tabla Egresados:</h3>
+            <table id="data" class="display nowrap" style="width:100%">
+               <thead>
+                  <tr>
+                     <th>Numero</th>
+                     <th>Nombre</th>
+                     <th>Cedula</th>
+                     <th>Titulo</th>
+                     <th>Fecha</th>
+                     <th>Indice</th>
+                     <th>Año</th>
+                     <th>Correo</th>
+                     <th>Telefono</th>
+                  </tr>
+               </thead>
+            </table>
+         </div>
+      </div>
+   </div>
+
+   <script>
+      $(document).ready(function () {
+         $('#data').DataTable({
+            lengthChange: false,
+            scrollX: true,
+            processing: true,
+            searching: true,
+            serverSide: true,
+            paging: true,
+            ordering: false,
+            pagingType: 'numbers',
+            info: true,
+            ajax: '/data',
+            language: {
+               url: '//cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json',
+               searchPlaceholder: '2012;2.00;PROFESOR EN EDUCACION'
+            }
+         });
+      });
+   </script>
+</body>
+
+</html>
