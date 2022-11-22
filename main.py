@@ -19,8 +19,8 @@ PATH = '/home/user/Projects/Egresados'
 def to_sql(df, create=False):
    if create:
       df.to_sql('Egresados', engine, if_exists='append')
-      df.to_sql('graduados', engine, if_exists='append')
-      df.to_sql('titulos', engine, if_exists='append')
+      #df.to_sql('graduados', engine, if_exists='append')
+      #df.to_sql('titulos', engine, if_exists='append')
       try:
          with engine.begin() as conn:
             conn.execute('ALTER TABLE Egresados ADD PRIMARY KEY (`Num. Diploma`);')
@@ -30,12 +30,12 @@ def to_sql(df, create=False):
          pass
    else:
       df.to_sql('EgresadosTemp', engine, if_exists='replace')
-      df.to_sql('graduadosTemp', engine, if_exists='replace')
-      df.to_sql('titulosTemp', engine, if_exists='replace')
+      #df.to_sql('graduadosTemp', engine, if_exists='replace')
+      #df.to_sql('titulosTemp', engine, if_exists='replace')
       with engine.begin() as conn:
          conn.execute('REPLACE INTO Egresados (SELECT * FROM EgresadosTemp)')
-         conn.execute('REPLACE INTO graduados (SELECT * FROM graduadosTemp)')
-         conn.execute('REPLACE INTO titulos (SELECT * FROM titulosTemp)')
+         #conn.execute('REPLACE INTO graduados (SELECT * FROM graduadosTemp)')
+         #conn.execute('REPLACE INTO titulos (SELECT * FROM titulosTemp)')
 
 def process_file(filename):
    input_file = f'{PATH}/pdf/{filename}'
@@ -60,7 +60,6 @@ def process_file(filename):
             df['Telefono'] = ""
             df = df.set_index('Num. Diploma')
             # New tables
-
             if j == 0 and i == 0:
                to_sql(df[0:0], create=True) # Make sure Table exists
             to_sql(df)
