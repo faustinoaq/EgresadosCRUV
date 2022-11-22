@@ -47,7 +47,7 @@ def process_file(filename):
       for j, df in enumerate(dfs):
          try:
             #graduados = pd.DataFrame()
-            graduados.columns = [] 
+            #graduados.columns = [] 
             df = df.loc[:,(~df.isnull()).any()]
             df = df[(~df.isnull()).all(axis=1)]
             df.columns = ['Nombre', 'Cedula', 'Titulo', 'Fecha Diploma', 'Num. Diploma', 'Indice']
