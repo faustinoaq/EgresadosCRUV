@@ -24,8 +24,8 @@ def to_sql(df, create=False):
       try:
          with engine.begin() as conn:
             conn.execute('ALTER TABLE Egresados ADD PRIMARY KEY (`Num. Diploma`);')
-            conn.execute('ALTER TABLE graduados ADD PRIMARY KEY (`ID_EGRESADO`);')
-            conn.execute('ALTER TABLE titulo ADD PRIMARY KEY (`ID_EGRESADO`);')
+            #conn.execute('ALTER TABLE graduados ADD PRIMARY KEY (`ID_EGRESADO`);')
+            #conn.execute('ALTER TABLE titulo ADD PRIMARY KEY (`ID_EGRESADO`);')
       except:
          pass
    else:
