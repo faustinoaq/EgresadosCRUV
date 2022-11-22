@@ -46,7 +46,7 @@ def process_file(filename):
       #dfs = tabula.io.read_pdf(input_file,guess=False, columns=[210, 340, 759, 850, 940], pages=[1])
       for j, df in enumerate(dfs):
          try:
-            graduados = pd.DataFrame()
+            #graduados = pd.DataFrame()
             graduados.columns = [] 
             df = df.loc[:,(~df.isnull()).any()]
             df = df[(~df.isnull()).all(axis=1)]
