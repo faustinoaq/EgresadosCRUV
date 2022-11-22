@@ -53,7 +53,7 @@ def process_file(filename):
             df.columns = ['Nombre', 'Cedula', 'Titulo', 'Fecha Diploma', 'Num. Diploma', 'Indice']
             df = df[(~df['Num. Diploma'].str.startswith('no'))]
             df = df[(df.Nombre != 'Nombre')]
-            df = df['Cedula'].str.split().join('-')
+            #df = df['Cedula'].str.split().join('-')
             df['Año'] = df['Fecha Diploma'].str.extract(r'.*-.*-(\d+)').astype(int) + 2000
             df['Num. Diploma'] = df['Num. Diploma'].str.extract(r'(\d+)').astype(int)
             df['Correo'] = ""
