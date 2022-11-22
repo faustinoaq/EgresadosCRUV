@@ -14,7 +14,7 @@ archivos = {}
 SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root@localhost:3306/egresados'
 engine = create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
 
-PATH = '%USERPROFILE%\Desktop\EgresadosCRUV'
+PATH = 'c:/Users/MaríaZeballos/Desktop/EgresadosCRUV'
 
 def to_sql(df, create=False):
    if create:
