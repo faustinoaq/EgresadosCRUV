@@ -18,22 +18,22 @@ PATH = 'c:/Users/MaríaZeballos/Desktop/EgresadosCRUV'
 
 def to_sql(df, create=False):
    if create:
-      df.to_sql('Egresados', engine, if_exists='append')
+      df.to_sql('egresados', engine, if_exists='append')
       #df.to_sql('graduados', engine, if_exists='append')
       #df.to_sql('titulos', engine, if_exists='append')
       try:
          with engine.begin() as conn:
-            conn.execute('ALTER TABLE Egresados ADD PRIMARY KEY (`Num. Diploma`);')
+            conn.execute('ALTER TABLE egresados ADD PRIMARY KEY (`Num. Diploma`);')
             #conn.execute('ALTER TABLE graduados ADD PRIMARY KEY (`ID_EGRESADO`);')
             #conn.execute('ALTER TABLE titulo ADD PRIMARY KEY (`ID_EGRESADO`);')
       except:
          pass
    else:
-      df.to_sql('EgresadosTemp', engine, if_exists='replace')
+      df.to_sql('egresadostemp', engine, if_exists='replace')
       #df.to_sql('graduadosTemp', engine, if_exists='replace')
       #df.to_sql('titulosTemp', engine, if_exists='replace')
       with engine.begin() as conn:
-         conn.execute('REPLACE INTO Egresados (SELECT * FROM EgresadosTemp)')
+         conn.execute('REPLACE INTO Egresados (SELECT * FROM egresadostemp)')
          #conn.execute('REPLACE INTO graduados (SELECT * FROM graduadosTemp)')
          #conn.execute('REPLACE INTO titulos (SELECT * FROM titulosTemp)')
 
